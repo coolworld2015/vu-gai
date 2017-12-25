@@ -3,20 +3,20 @@
 		<nav class="h-100 fp-navbar" onclick="event.preventDefault();return false">
 			<ul class="h-100 fp-nav-right">
 				<li v-on:click="changeView()">  
-					<img src="../../assets/img/logo.jpg" style="width1: 250px; height: 50px; margin-right: 10px; margin-top: -5px;" 
+					<img src="../../assets/img/logo.jpg" style="width1: 250px; height: 50px; margin-right: 10px; margin-top: -5px; margin-left: 8px;" 
 						v-on:click="changeView()" 
 					/>  
 					<span style="font-weight: bold; color: white; font-size: 20px; text-shadow: #000 0.15em 0.15em 0.15em;">
-						Base 09 
+						GAI 
 					</span>
 				</li>  								 
 				<li class="fp-nav-item fp-nav-item-right">
-				  <span class="fp-nav-link menu-block-header">Base 09</span>
+				  <span class="fp-nav-link menu-block-header">GAI</span>
 				</li>				
 				
 				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')" 
 					v-bind:class="{ active: phones }">
-					<span class="fp-nav-link">Phones</span>
+					<span class="fp-nav-link">Items</span>
 				</li>				
 <!--				
 				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')" 
@@ -40,7 +40,7 @@
 			
 			<ul class="h-100 fp-nav-left">
 				<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeView()">
-					<span class="fp-nav-link" id="showNav" title="Base 09">GA</span>
+					<span class="fp-nav-link" id="showNav" title="GAI">GA</span>
 					<span class="hot-key-hint">~</span>
 				</li>
 				<li class="fp-nav-item fp-nav-item-left">
@@ -50,7 +50,7 @@
 				
 				<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('phones')" 
 					v-bind:class="{ active: phones }">
-					<span class="fp-nav-link" title="Phones">PH</span>
+					<span class="fp-nav-link" title="Items">IT</span>
 					<span class="hot-key-hint">2</span>
 				</li>				
 <!--				
