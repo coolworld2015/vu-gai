@@ -40,7 +40,7 @@
 			
 			<ul class="h-100 fp-nav-left">
 				<li class="fp-nav-item fp-nav-item-left li-border-bottom" v-on:click="changeView()">
-					<span class="fp-nav-link" id="showNav" title="Base 09">09</span>
+					<span class="fp-nav-link" id="showNav" title="Base 09">GA</span>
 					<span class="hot-key-hint">~</span>
 				</li>
 				<li class="fp-nav-item fp-nav-item-left">

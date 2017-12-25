@@ -45,17 +45,18 @@ export default {
 		fetchData() {
 			this.loading = true;
 			this.error = false;
-			this.$http.post('https://jwt-base.herokuapp.com/api/login', 
+			this.$http.post('https://jwt-gai.herokuapp.com/api/login', 
 				{
 					name: this.name,
 					pass: this.pass,
 					description: 'Web'
 				})
 				.then(result => {
-					appConfig.access_token = result.body.token;
+				console.log(result)
+					appConfig.access_token = result.body;
 					this.loading = false;
 					this.error = false;
-					this.$router.push('/phones');
+					this.$router.push('/users');
 				})
 				.catch((error)=> {
 					this.loading = false;
