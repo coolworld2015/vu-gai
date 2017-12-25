@@ -52,7 +52,6 @@ export default {
 					description: 'Web'
 				})
 				.then(result => {
-				console.log(result)
 					appConfig.access_token = result.body;
 					this.loading = false;
 					this.error = false;
