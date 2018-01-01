@@ -35,6 +35,7 @@
 							'<hr>' +
 							'<button ng-click="collectionCtrl.getToken()">Get Token</button>&nbsp' +							
 							'<button ng-click="collectionCtrl.getUsers()">Get Users</button>&nbsp' +
+							'<button ng-click="collectionCtrl.getItems()">Get Items</button>&nbsp' +
 							'<hr>' +
 							'<div ng-if="collectionCtrl.items.length >= 1">' +
 								'<table border=1>' +
@@ -70,12 +71,13 @@
         function CollectionCtrl($scope, $state, $rootScope, $http) {
             var vm = this;
 			//var url = 'http://localhost:3000/';
-			var url = 'http://jwt-base.herokuapp.com/';
+			var url = 'http://jwt-gai.herokuapp.com/';
 			
 			angular.extend(vm, {
 				init: init,
 				onLogin: onLogin,
 				getUsers: getUsers,
+				getItems: getItems,
 				getToken: getToken,				
 			});
 			
@@ -99,13 +101,35 @@
                         .then(function (results) {
 							$rootScope.loading = false;
 							$rootScope.access_token = results.data;
+							console.log(results);
 							vm.getUsers();
                         })
                         .catch(function (error) {
 							$rootScope.loading = false;
 							$rootScope.error = true;
+							console.log(error);
                         });
             }
+			
+            function getItems() {
+				$rootScope.loading = true;
+				$rootScope.error = false;
+				
+				$http.get(url + 'api/items/get',
+					{
+						headers: {'Authorization': $rootScope.access_token}
+					})
+					.then(function (results) {
+						$rootScope.loading = false;
+						vm.items = results.data;
+						console.log(results);
+					})
+					.catch(function (error) {
+						$rootScope.loading = false;
+						$rootScope.error = true;
+						console.log(error);
+					});
+			}			
 			
             function getUsers() {
 				$rootScope.loading = true;
@@ -118,10 +142,12 @@
 					.then(function (results) {
 						$rootScope.loading = false;
 						vm.items = results.data;
+						console.log(results);
 					})
 					.catch(function (error) {
 						$rootScope.loading = false;
 						$rootScope.error = true;
+						console.log(error);
 					});
 			}			
 			            
@@ -133,10 +159,12 @@
 					.then(function (results) {
 						$rootScope.loading = false;
 						$rootScope.access_token = results.data;
+						console.log(results);
 					})
 					.catch(function (error) {
 						$rootScope.loading = false;
 						$rootScope.error = true;
+						console.log(error);
 					});
 			}	
 		}

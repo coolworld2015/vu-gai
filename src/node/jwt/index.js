@@ -10,8 +10,8 @@ app.listen(process.env.PORT || 3000, function () {
 
 app.get('/', function (req, res) {
 	//res.sendFile(__dirname + '/build/index.html');
-	res.sendFile(__dirname + '/auth.html');			//	MUST REMOVE !!!
-    //res.send('It is just API Server...');
+	//res.sendFile(__dirname + '/auth.html');			//	MUST REMOVE !!!
+    res.send('It is just API Server...');
 });
 
 //app.use(express.static(__dirname + '/'));
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type, accept, authorization');
     next();
 });
- 
+
 //------------------------------------------------------------------------
 var jwt = require('jsonwebtoken');
 var secret = 'f3oLigPb3vGCg9lgL0Bs97wySTCCuvYdOZg9zqTY32o';
@@ -191,7 +191,7 @@ app.post('/api/users/delete', function(req, res) {
 					return res.send({error: 'Server error'});
 				} else {
 					console.log('User with id: ', req.body.id, ' was removed');
-					res.send({text: 'User with id: ' + req.body.id + ' was removed'});
+					res.send('User with id: ' + req.body.id + ' was removed');
 				}
 			});
 		}

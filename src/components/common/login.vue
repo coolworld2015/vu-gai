@@ -52,7 +52,7 @@ export default {
 					description: 'Web'
 				})
 				.then(result => {
-					appConfig.access_token = result.body;
+					appConfig.access_token = result.body.token;
 					this.loading = false;
 					this.error = false;
 					this.$router.push('/phones');
