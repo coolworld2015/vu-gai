@@ -36,7 +36,7 @@ import Vue from 'vue';
 import appConfig from '../../main';
 
 export default {
-	name: 'users-items',
+	name: 'phones-items',
 	data() {
 	  return {
 		items: [],
@@ -44,7 +44,7 @@ export default {
 		recordsCount: 20,
 		positionY: 0,
 		status: 'loading',
-		clicked: false
+		clicked: false,
 	  }
 	},
 	created() {
@@ -54,8 +54,11 @@ export default {
 			message: 'Server responded with status code error',
 			important: true
 		}
-		appConfig.$on('searchQuery', (searchQuery, searchType) => {
-			console.log(searchType + ': ' + searchQuery)
+		appConfig.$on('clearHeader', () => {
+			this.status = 'show';
+			setTimeout(()=>{document.querySelector('.search-results-content').addEventListener('scroll', this.handleScroll)}, 100);
+		})
+		appConfig.$on('searchQueryPhones', (searchQuery, searchType) => {
 			this.searchQuery = searchQuery;
 			let arr = [].concat(appConfig.phones.items);
 			let items = [].concat(appConfig.phones.items);
@@ -72,7 +75,6 @@ export default {
 			this.items = items.slice(0, 20);
 			this.positionY = 0;
 			this.recordsCount = 20;
-			console.log(items.length)
 			appConfig.$emit('itemsCount', items.length);
 			if (searchQuery == '') {
 				this.items = appConfig.phones.items.slice(0, 20);
@@ -80,38 +82,52 @@ export default {
 			}
 		})
 		appConfig.$on('searchName', searchQuery => {
-				console.log(searchQuery)
-				if (searchQuery !== '') {
 				this.status = 'loading';
+				if (!appConfig.http) {
+					return;
+				}
+				
+				if (searchQuery !== '') {
+				appConfig.http = false;
 				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByName/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
 						appConfig.phones.items = result.data.sort(this.sort);
 						this.items = result.data.sort(this.sort).slice(0, 20);
 						this.filteredItems = result.data.sort(this.sort);
-						this.status = 'show';
 						appConfig.$emit('itemsCount', result.data.length);
 						setTimeout(()=>{document.querySelector('.search-results-content').addEventListener('scroll', this.handleScroll)}, 100);
+						this.status = 'show';
+						appConfig.http = true;
+						appConfig.$emit('clearHeader');
 					}).catch((error)=> {
 						appConfig.notifications.items.push(this.notification);
 						this.status = 'show';
+						appConfig.http = true;
 					})
 				}
 		}),
 		appConfig.$on('searchPhone', searchQuery => {
-				console.log(searchQuery)
-				if (searchQuery !== '') {
 				this.status = 'loading';
+				if (!appConfig.http) {
+					return;
+				}
+				
+				if (searchQuery !== '') {
+				appConfig.http = false;
 				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByPhone/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
 						appConfig.phones.items = result.data.sort(this.sort);
 						this.items = result.data.sort(this.sort).slice(0, 20);
 						this.filteredItems = result.data.sort(this.sort);
-						this.status = 'show';
 						appConfig.$emit('itemsCount', result.data.length);
 						setTimeout(()=>{document.querySelector('.search-results-content').addEventListener('scroll', this.handleScroll)}, 100);
+						this.status = 'show';
+						appConfig.http = true;
+						appConfig.$emit('clearHeader');
 					}).catch((error)=> {
 						appConfig.notifications.items.push(this.notification);
 						this.status = 'show';
+						appConfig.http = true;
 					})
 				}
 		})
