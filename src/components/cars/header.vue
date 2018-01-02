@@ -26,10 +26,11 @@
 			<div class="search-results-item search-results-choose"></div>
  
 			<div class="search-results-item search-results-sender" style="width: 25%; left: 40px">Model</div>
-			<div class="search-results-item search-results-sender" style="width: 20%; right: 10px">Registration</div>
+			<div class="search-results-item search-results-sender" style="width: 15%; right: 10px">Registration</div>
  
-			<div class="search-results-item search-results-result" style="width: 15%; right: 5px">Year</div>
-			<div class="search-results-item search-results-sender" style="width: 35%; left: 40px" v-on:click="changeSearch('name')">Name</div>
+			<div class="search-results-item search-results-result" style="width: 10%; right: 5px">Year</div>
+			<div class="search-results-item search-results-sender" style="width: 25%; left: 50px" v-on:click="changeSearch('name')">Name</div>
+			<div class="search-results-item search-results-sender" style="width: 10%; left: 35px" v-on:click="changeSearch('phone')">Phone</div>
 		</div>
 	</header>	
 </template>

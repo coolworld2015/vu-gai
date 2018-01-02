@@ -15,9 +15,10 @@
 				<span class="search-results-icon"></span>
 				{{ item.model }}
 			</div> 
-			<div class="search-results-item search-results-sender"  style="width: 20%;">{{ item.regnum }}</div>
-			<div class="search-results-item search-results-sender"  style="width: 15%;">{{ item.year }}</div>
-			<div class="search-results-item search-results-sender"  style="width: 35%;">{{ item.name }} {{ item.name1 }} {{ item.name2 }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 15%;">{{ item.regnum }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 10%;">{{ item.year }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 25%;">{{ item.name }} {{ item.name1 }} {{ item.name2 }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 10%; left: 40px">{{ item.phone }} </div>
 		</div> 
 	</div>
 

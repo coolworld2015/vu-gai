@@ -104,7 +104,7 @@ export default {
 		},
 		addItem() {
 			this.loading = true;
-			this.$http.post('https://ui-gai.herokuapp.com/api/users/add', {                
+			this.$http.post('http://jwt-gai.herokuapp.com/api/users/add', {                
 					id: +new Date,
 					name: this.name,
 					pass: this.pass,
