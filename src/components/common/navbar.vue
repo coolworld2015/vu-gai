@@ -14,8 +14,8 @@
 				  <span class="fp-nav-link menu-block-header">GAI</span>
 				</li>				
 				
-				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')" 
-					v-bind:class="{ active: phones }">
+				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('cars')" 
+					v-bind:class="{ active: cars }">
 					<span class="fp-nav-link">Items</span>
 				</li>				
 <!--				
@@ -48,8 +48,8 @@
 				  <span class="hot-key-hint">1</span>
 				</li>
 				
-				<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('phones')" 
-					v-bind:class="{ active: phones }">
+				<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('cars')" 
+					v-bind:class="{ active: cars }">
 					<span class="fp-nav-link" title="Items">IT</span>
 					<span class="hot-key-hint">2</span>
 				</li>				
@@ -90,7 +90,7 @@ export default {
 				searchQuery: '',
 				route: appConfig.route,
 				isActive: false,
-				phones: null,
+				cars: null,
 				find: null,
 				audits: null,
 				users: null,
@@ -116,10 +116,10 @@ export default {
 						this.find = false;
 					}					
 					
-					if (this.route == 'Phones') {
-						this.phones = true;
+					if (this.route == 'Cars') {
+						this.cars = true;
 					} else {
-						this.phones = false;
+						this.cars = false;
 					}
 					
 					if (this.route == 'Audits') {

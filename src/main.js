@@ -15,7 +15,7 @@ const appConfig = new Vue();
 appConfig.route ='Payments',
 appConfig.phones = { items: [] };
 appConfig.audits = { items: [] };
-appConfig.users = { items: [] };
+appConfig.cars = { items: [] };
 appConfig.payments = { items: [] };
 appConfig.notifications = {items: []}
 export default appConfig;

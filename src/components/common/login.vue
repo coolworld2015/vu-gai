@@ -55,7 +55,7 @@ export default {
 					appConfig.access_token = result.body.token;
 					this.loading = false;
 					this.error = false;
-					this.$router.push('/phones');
+					this.$router.push('/cars');
 				})
 				.catch((error)=> {
 					this.loading = false;

@@ -77,7 +77,7 @@ import appConfig from '../../main';
 import navbar from '@/components/common/navbar';
 
 export default {
-	name: 'users-edit',
+	name: 'cars-edit',
 	data() {
 		return {
 			name: '',
@@ -90,8 +90,8 @@ export default {
 		}
 	},
 	created() {
-		if (!appConfig.phone) {
-			this.$router.push('/phones');
+		if (!appConfig.car) {
+			this.$router.push('/cars');
 		} else {
 			this.setData();
 		}
@@ -99,19 +99,19 @@ export default {
 	methods: {
 		setData() {
 			if (appConfig) {
-				if (appConfig.phone) {
-					this.id = appConfig.phone.id;
-					this.name = appConfig.phone.name;
-					this.phone = appConfig.phone.phone;
-					this.street = appConfig.phone.street;
-					this.house = appConfig.phone.house;
-					this.apt = appConfig.phone.apt;
-					this.index = appConfig.phone.index;
+				if (appConfig.car) {
+					this.id = appConfig.car.id;
+					this.name = appConfig.car.name;
+					this.phone = appConfig.car.phone;
+					this.street = appConfig.car.str;
+					this.house = appConfig.car.house;
+					this.apt = appConfig.car.apt;
+					this.index = appConfig.car.index;
 				}
 			}
 		},
 		goBack() {
-			this.$router.push('/phones');
+			this.$router.push('/cars');
 		}
 	}
 }

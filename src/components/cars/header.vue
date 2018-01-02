@@ -24,12 +24,12 @@
 
 		<div class="search-results-header">
 			<div class="search-results-item search-results-choose"></div>
-			<div class="search-results-item search-results-sender" style="left: 25px;" v-on:click="changeSearch('name')">Name</div>
-			<div class="search-results-item search-results-product" v-on:click="changeSearch('phone')">Phone</div>
-			<div class="search-results-item search-results-sender" style="left: 60px;">Street</div>
-			<div class="search-results-item search-results-transfer" style="left: 25px;">House</div>
-			<div class="search-results-item search-results-amount" style="left: 35px;">Apt</div>
-			<div class="search-results-item search-results-result" style="left: 55px;">ZIP Code</div>
+ 
+			<div class="search-results-item search-results-sender" style="width: 25%; left: 40px">Model</div>
+			<div class="search-results-item search-results-sender" style="width: 20%; right: 10px">Registration</div>
+ 
+			<div class="search-results-item search-results-result" style="width: 15%; right: 5px">Year</div>
+			<div class="search-results-item search-results-sender" style="width: 35%; left: 40px" v-on:click="changeSearch('name')">Name</div>
 		</div>
 	</header>	
 </template>
@@ -38,7 +38,7 @@
 import appConfig from '../../main';
 
 export default {
-	name: 'users-header',
+	name: 'cars-header',
 	data() {
 	  return {
 		searchQuery: '',

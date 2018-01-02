@@ -8,20 +8,17 @@
 	<div v-else-if="status === 'show'" class="search-results-content">
  
 		<div class="payment" v-for="item in items" v-on:click="showDetails(item)">
-			<div class="search-results-item search-results-choose"><span class="circle"></span></div>
-			<div class="search-results-item search-results-sender">{{ item.name }}</div>
-			<div class="search-results-item search-results-transfer">{{ item.phone }}</div>
-			<div class="search-results-item search-results-sender">{{ item.street }}</div>
-			<div class="search-results-item search-results-transfer">{{ item.house }}</div>
-			<div class="search-results-item search-results-amount">{{ item.apt }}</div>
-
-			<div class="search-results-item search-results-result long-term">
+			<div class="search-results-item search-results-choose"  style="width: 5%;">
+				<span class="circle"></span>
+			</div>
+			<div class="search-results-item search-results-result long-term" style="width: 25%;">
 				<span class="search-results-icon"></span>
-				{{ item.index }}
+				{{ item.model }}
 			</div> 
-
-		</div>
- 
+			<div class="search-results-item search-results-sender"  style="width: 20%;">{{ item.regnum }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 15%;">{{ item.year }}</div>
+			<div class="search-results-item search-results-sender"  style="width: 35%;">{{ item.name }} {{ item.name1 }} {{ item.name2 }}</div>
+		</div> 
 	</div>
 
 	<div v-else-if="status === 'error'">
@@ -36,7 +33,7 @@ import Vue from 'vue';
 import appConfig from '../../main';
 
 export default {
-	name: 'phones-items',
+	name: 'cars-items',
 	data() {
 	  return {
 		items: [],
@@ -60,8 +57,8 @@ export default {
 		})
 		appConfig.$on('searchQueryPhones', (searchQuery, searchType) => {
 			this.searchQuery = searchQuery;
-			let arr = [].concat(appConfig.phones.items);
-			let items = [].concat(appConfig.phones.items);
+			let arr = [].concat(appConfig.cars.items);
+			let items = [].concat(appConfig.cars.items);
 			
 			if (searchType == 'name') {
 				items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
@@ -77,8 +74,8 @@ export default {
 			this.recordsCount = 20;
 			appConfig.$emit('itemsCount', items.length);
 			if (searchQuery == '') {
-				this.items = appConfig.phones.items.slice(0, 20);
-				this.filteredItems = appConfig.phones.items;
+				this.items = appConfig.cars.items.slice(0, 20);
+				this.filteredItems = appConfig.cars.items;
 			}
 		})
 		appConfig.$on('searchName', searchQuery => {
@@ -91,7 +88,7 @@ export default {
 				appConfig.http = false;
 				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByName/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
-						appConfig.phones.items = result.data.sort(this.sort);
+						appConfig.cars.items = result.data.sort(this.sort);
 						this.items = result.data.sort(this.sort).slice(0, 20);
 						this.filteredItems = result.data.sort(this.sort);
 						appConfig.$emit('itemsCount', result.data.length);
@@ -116,7 +113,7 @@ export default {
 				appConfig.http = false;
 				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByPhone/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
-						appConfig.phones.items = result.data.sort(this.sort);
+						appConfig.cars.items = result.data.sort(this.sort);
 						this.items = result.data.sort(this.sort).slice(0, 20);
 						this.filteredItems = result.data.sort(this.sort);
 						appConfig.$emit('itemsCount', result.data.length);
@@ -136,7 +133,7 @@ export default {
 		fetchData() {
 			this.$http.get('https://jwt-gai.herokuapp.com/api/items/get', {headers: {'Authorization': appConfig.access_token}})
 				.then(result => {
-					appConfig.phones.items = result.data.sort(this.sort);
+					appConfig.cars.items = result.data.sort(this.sort);
 					this.items = result.data.sort(this.sort).slice(0, 20);
 					this.filteredItems = result.data.sort(this.sort);
 					this.status = 'show';
@@ -168,8 +165,8 @@ export default {
 			}
 		},			
 		showDetails(item){
-			appConfig.phone = item;
-			this.$router.push('phone-edit');
+			appConfig.car = item;
+			this.$router.push('car-edit');
 		},
 		sort(a, b) {
 			let nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();

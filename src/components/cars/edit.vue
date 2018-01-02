@@ -4,7 +4,7 @@
 		<div class="content">
 			<main>
 				<section class="search-results">
-					<phone-form-edit></phone-form-edit>
+					<car-form-edit></car-form-edit>
 				</section>
 			</main>
 		</div>
@@ -13,13 +13,13 @@
 
 <script>
 import navbar from '@/components/common/navbar';
-import phoneFormEdit from '@/components/phones/form-edit';
+import carFormEdit from '@/components/cars/form-edit';
 
 export default {
-	name: 'phone-edit',
+	name: 'car-edit',
 	components: {
-		navbar:	navbar,
-		phoneFormEdit: phoneFormEdit
+		navbar,
+		carFormEdit
 	}
 }
 </script>
