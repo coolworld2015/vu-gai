@@ -134,9 +134,15 @@ export default {
 		fetchData() {
 			this.$http.get('https://jwt-gai.herokuapp.com/api/items/get', {headers: {'Authorization': appConfig.access_token}})
 				.then(result => {
-					appConfig.cars.items = result.data.sort(this.sort);
-					this.items = result.data.sort(this.sort).slice(0, 20);
-					this.filteredItems = result.data.sort(this.sort);
+					let items = result.data.sort(this.sort);
+					items.forEach((el)=>{
+						if(el.phone == '') {el.phone = 'n/a'}	
+						if(el.job == '') {el.job = 'n/a'}	
+						if(el.pos == '') {el.pos = 'n/a'}	
+					})
+					appConfig.cars.items = items;
+					this.items = items.slice(0, 20);
+					this.filteredItems = items;
 					this.status = 'show';
 					appConfig.$emit('itemsCount', result.data.length);
 					setTimeout(()=>{document.querySelector('.search-results-content').addEventListener('scroll', this.handleScroll)}, 100);
