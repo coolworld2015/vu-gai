@@ -41,12 +41,24 @@ export default {
 		filteredItems: [],
 		recordsCount: 20,
 		positionY: 0,
-		status: 'loading',
+		status: 'show',
 		clicked: false,
 	  }
 	},
 	created() {
-		this.fetchData();
+		this.items = appConfig.cars.items.sort(this.sort).slice(0, 20);
+		this.filteredItems = appConfig.cars.items.sort(this.sort);
+		setTimeout(()=> {
+			if (document.querySelector('.search-results-content')) {
+				document.querySelector('.search-results-content').addEventListener('scroll', this.handleScroll)
+			}
+		}, 100);
+		
+		if (appConfig.cars.refresh) {
+            appConfig.cars.refresh = false;
+			this.fetchData();
+		}
+		
 		this.notification = {
 			title: 'Something went wrong',
 			message: 'Server responded with status code error',
@@ -87,7 +99,7 @@ export default {
 				
 				if (searchQuery !== '') {
 				appConfig.http = false;
-				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByName/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
+				this.$http.get(appConfig.URL + 'items/findByName/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
 						let items = result.data.sort(this.sort);
 						items.forEach((el)=>{
@@ -118,7 +130,7 @@ export default {
 				
 				if (searchQuery !== '') {
 				appConfig.http = false;
-				this.$http.get('https://jwt-gai.herokuapp.com/api/items/findByPhone/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
+				this.$http.get(appConfig.URL + 'items/findByPhone/' + searchQuery, {headers: {'Authorization': appConfig.access_token}})
 					.then(result => {
 						let items = result.data.sort(this.sort);
 						items.forEach((el)=>{
@@ -144,7 +156,7 @@ export default {
 	},
 	methods: {
 		fetchData() {
-			this.$http.get('https://jwt-gai.herokuapp.com/api/items/get', {headers: {'Authorization': appConfig.access_token}})
+			this.$http.get(appConfig.URL + 'items/get', {headers: {'Authorization': appConfig.access_token}})
 				.then(result => {
 					let items = result.data.sort(this.sort);
 					items.forEach((el)=>{

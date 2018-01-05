@@ -12,11 +12,13 @@ import './assets/css/style.css'
 import './assets/css/font-awesome-4.7.0/css/font-awesome.min.css';
 
 const appConfig = new Vue();
-appConfig.route ='Payments',
-appConfig.users = { items: [] };
+appConfig.URL ='https://jwt-gai.herokuapp.com/api/';
+
+appConfig.getAccessToken = ()=> {appConfig.access_token = localStorage.getItem('access_token');};
+
+appConfig.cars = { items: [], refresh: true };
 appConfig.audits = { items: [] };
-appConfig.cars = { items: [] };
-appConfig.payments = { items: [] };
+appConfig.users = { items: [] };
 appConfig.notifications = {items: []}
 export default appConfig;
 

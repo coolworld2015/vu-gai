@@ -7,8 +7,8 @@
 					box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5); text-align: center;">
 				<div class="col-sm-12 d-flex flex-column justify-content-around">
 					<form class="align-self-center login-form" autocomplete="off">
-						<p class="h5" style="font-weight: bold;">GAI</p>
-						<img src="../../assets/img/logo.jpg" style="margin-bottom: 10px; width: 150px;"> 
+						<p class="h5" style="font-weight: bold;">Base09</p>
+						<img src="../../assets/img/logo.jpg" style="margin-bottom: 10px; width: 200px;"> 
 						<input v-model="name" type="text" class="form-control login-input" id="user" placeholder="Login">
 						<input v-model="pass" type="text" class="form-control login-input" id="password" placeholder="Password">
 						<input type="submit" value="Submit" class="btn btn-danger button-login" id="login" v-on:click="fetchData">
@@ -39,7 +39,7 @@ export default {
   },
 	created() {
 		appConfig.route = this.route;
-		appConfig.access_token = null;		
+		localStorage.setItem('access_token', 'login');
 	},
 	methods: {
 		fetchData() {
@@ -53,9 +53,10 @@ export default {
 				})
 				.then(result => {
 					appConfig.access_token = result.body.token;
+					localStorage.setItem('access_token', result.body.token);
 					this.loading = false;
 					this.error = false;
-					this.$router.push('/cars');
+					this.$router.push('cars');
 				})
 				.catch((error)=> {
 					this.loading = false;

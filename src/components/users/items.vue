@@ -48,7 +48,7 @@ export default {
 			message: 'Server responded with status code error',
 			important: true
 		}
-		appConfig.$on('searchQuery', searchQuery => {
+		appConfig.$on('searchQueryUsers', searchQuery => {
 			this.searchQuery = searchQuery;
 			var arr = [].concat(appConfig.users.items);
 			var items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
@@ -66,7 +66,7 @@ export default {
 	},
 	methods: {
 		fetchData() {
-			this.$http.get('https://jwt-gai.herokuapp.com/api/users/get', {headers: {'Authorization': appConfig.access_token}})
+			this.$http.get(appConfig.URL + 'users/get', {headers: {'Authorization': appConfig.access_token}})
 				.then(result => {
 					appConfig.users.items = result.data.sort(this.sort);
 					this.items = result.data.sort(this.sort).slice(0, 20);
@@ -77,6 +77,7 @@ export default {
 				}).catch((error)=> {
 					appConfig.notifications.items.push(this.notification);
 					this.status = 'show';
+					this.$router.push('login');
 				})
 		},
 		handleScroll() {

@@ -11,7 +11,7 @@ import UserAdd from '@/components/users/add';
 import Cars from '@/components/cars/cars';
 import CarEdit from '@/components/cars/edit';
 
-import Audits from '@/components/audits/audit';
+import Audits from '@/components/audits/audits';
 import AuditsEdit from '@/components/audits/edit';
 
 export default new Router({

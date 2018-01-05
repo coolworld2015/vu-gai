@@ -32,7 +32,7 @@
   import appConfig from '../../main';
 
   export default {
-    name: 'users-items',
+    name: 'audits-items',
     data() {
       return {
         items: [],
@@ -51,7 +51,7 @@
 			message: 'Server responded with status code error',
 			important: true
 		}
-		appConfig.$on('searchQuery', searchQuery => {
+		appConfig.$on('searchQueryAudits', searchQuery => {
 			this.searchQuery = searchQuery;
 			let arr = [].concat(appConfig.audits.items);
 			let items = arr.filter((el) => el.name.toLowerCase().indexOf(searchQuery.toLowerCase()) != -1);
@@ -69,7 +69,7 @@
     },
     methods: {
       fetchData() {
-        this.$http.get('https://jwt-gai.herokuapp.com/api/audit/get', {headers: {'Authorization': appConfig.access_token}})
+        this.$http.get(appConfig.URL + 'audit/get', {headers: {'Authorization': appConfig.access_token}})
           .then(result => {
             appConfig.audits.items = result.data;
             this.items = result.data.slice(0, 20);
@@ -82,6 +82,7 @@
           }).catch((error) => {
 				appConfig.notifications.items.push(this.notification);
 				this.status = 'show';
+				this.$router.push('/login');
         })
       },
       handleScroll() {
@@ -100,7 +101,6 @@
       selectItem(id) {
         this.selectedItem = id;
         this.clicked = !this.clicked;
-        console.log(this.selectedItem)
       },
       onItem() {
         this.clicked = !this.clicked;
