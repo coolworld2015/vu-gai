@@ -156,6 +156,7 @@ export default {
 	},
 	methods: {
 		fetchData() {
+			this.status = 'loading';
 			this.$http.get(appConfig.URL + 'items/get', {headers: {'Authorization': appConfig.access_token}})
 				.then(result => {
 					let items = result.data.sort(this.sort);

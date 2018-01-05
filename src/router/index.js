@@ -19,14 +19,14 @@ export default new Router({
     { path: '/', component: Login },
     { path: '*', component: Login },
     { path: '/login', component: Login },
+		
+	{ path: '/cars', component: Cars },
+	{ path: '/car-edit', component: CarEdit },
 	
     { path: '/users', component: Users },
     { path: '/user-edit', component: UserEdit },
     { path: '/user-add', component: UserAdd },
-	
-	{ path: '/cars', component: Cars },
-	{ path: '/car-edit', component: CarEdit },
-	
+
 	{ path: '/audits', component: Audits },
 	{ path: '/audit-edit', component: AuditsEdit }
   ]
