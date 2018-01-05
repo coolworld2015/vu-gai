@@ -4,12 +4,12 @@ Vue.use(Router);
 
 import Login from '@/components/common/login';
 
+import Cars from '@/components/cars/cars';
+import CarEdit from '@/components/cars/edit';
+
 import Users from '@/components/users/users';
 import UserEdit from '@/components/users/edit';
 import UserAdd from '@/components/users/add';
-
-import Cars from '@/components/cars/cars';
-import CarEdit from '@/components/cars/edit';
 
 import Audits from '@/components/audits/audits';
 import AuditsEdit from '@/components/audits/edit';

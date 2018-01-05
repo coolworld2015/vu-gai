@@ -16,7 +16,7 @@
 				
 				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('cars')" 
 					v-bind:class="{ active: cars }">
-					<span class="fp-nav-link">Items</span>
+					<span class="fp-nav-link">Cars</span>
 				</li>				
 <!--				
 				<li class="fp-nav-item fp-nav-item-right" v-on:click="changeRoute('phones')" 
@@ -50,7 +50,7 @@
 				
 				<li class="fp-nav-item fp-nav-item-left" v-on:click="changeRoute('cars')" 
 					v-bind:class="{ active: cars }">
-					<span class="fp-nav-link" title="Items">IT</span>
+					<span class="fp-nav-link" title="Items">CA</span>
 					<span class="hot-key-hint">2</span>
 				</li>				
 <!--				
